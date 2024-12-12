@@ -75,6 +75,33 @@ def list_repos():
     repo_names = [repo['full_name'] for repo in repos]
     return jsonify({"repositories": repo_names})
 
+
+# LIST ALL FILES IN THE REPOSITORY
+@app.route('/files')
+def list_files():
+    access_token = request.args.get('access_token')
+    repo_name = request.args.get('repo_name')
+    if not access_token or not repo_name:
+        return "Access token and repository name are required", 400
+
+    # Call GitHub API to get the repository files
+    response = requests.get(
+            f"{GITHUB_API_URL}/repos/{repo_name}/contents/",
+            headers={'Authorization': f"token {access_token}"}
+            )
+    #print(response.json())
+    if response.status_code != 200:
+        return "Failed to fetch repositories", 400
+
+    files = response.json()
+    filenames = []
+    for file in files:
+        filenames.append(file.get('name'))
+    for file in filenames:
+        print(file)
+    return jsonify({"Success": "files retrieved"})
+
+
 # FETCH LATEST COMMIT
 @app.route('/latest-commit')
 def latest_commit():
@@ -98,12 +125,14 @@ def latest_commit():
     print(f'latest_commit is of type {type(latest_commit)}')
     #print(latest_commit)
     sha = latest_commit.get('sha')
+    print("sha", sha);
 
     # Display files changed in the latest commit
     response = requests.get(
         f"{GITHUB_API_URL}/repos/{repo_name}/commits/{sha}",
         headers={'Authorization': f"token {access_token}"}
         )
+
     sharesponse = response.json()
     i = 1
     for key in sharesponse.keys():
@@ -113,11 +142,22 @@ def latest_commit():
     print(len(files))
     print(f'files is of type {type(files)}')
     i = 0
+    
     for file in files:
         filename = file.get('filename')
         if filename == "main.py":
+            main = file
             print(f'{i}. {filename}')
+            i = 0
+            for key in file.keys():
+                print(f'{1}. {key}')
         i += 1
+
+    # Make a request to the raw_url to get the plain_text of the code
+    raw_file_content_url = file.get('raw_url')
+    response = requests.get(raw_file_content_url);
+    print(response.text)
+    print(type(response.text))
     #print(response.json())
     return jsonify({"latest_commit": latest_commit})
 
@@ -148,8 +188,11 @@ def file_content():
 
     #  Decode the file content (GitHub API returns base64-encoded content)
     decoded_content = base64.b64decode(file_content['content']).decode('utf-8')
-    return jsonify({"file_name": file_content['name'],
-    "file_content": decoded_content})
+    print(decoded_content)
+
+    #return jsonify({"file_name": file_content['name'],
+    #"file_content": decoded_content})
+    return (decoded_content)
 
 
 if __name__ == '__main__':
