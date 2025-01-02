@@ -1,3 +1,0 @@
-'''
-Login with GitHub application
-'''
