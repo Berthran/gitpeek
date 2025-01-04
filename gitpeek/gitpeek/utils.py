@@ -3,6 +3,7 @@ import os
 import requests # type: ignore
 from dotenv import load_dotenv # type: ignore
 
+
 load_dotenv()
 CLIENT_ID = os.getenv("CLIENT_ID")
 CLIENT_SECRET = os.getenv("CLIENT_SECRET")
@@ -36,3 +37,26 @@ def get_user_info(token):
     headers = {'Authorization': f'Bearer {token}'}
     response = requests.get(url, headers=headers)
     return parse_response(response)
+
+
+def get_repositories(token):
+    url = 'https://api.github.com/user/repos'
+    headers = {'Authorization': f'Bearer {token}'}
+    response = requests.get(url, headers=headers)
+    json_response = parse_response(response)
+    if not json_response:
+        return []
+    else:
+        return [repo['name'] for repo in json_response]
+
+def get_files(token, repo):
+    url = f'https://api.github.com/repos/{repo}/contents'
+    headers = {'Authorization': f'Bearer {token}'}
+    response = requests.get(url, headers=headers)
+    json_response = parse_response(response)
+    if not json_response:
+        return []
+    return [file['name'] for file in json_response]
+
+
+
