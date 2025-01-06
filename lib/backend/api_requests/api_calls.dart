@@ -12,7 +12,7 @@ class GetRepositoriesCall {
   static Future<ApiCallResponse> call() async {
     return ApiManager.instance.makeApiCall(
       callName: 'GetRepositories',
-      apiUrl: 'https://da95-102-89-85-113.ngrok-free.app/get_repositories',
+      apiUrl: 'https://efa5-102-89-68-196.ngrok-free.app/get_repositories',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -39,17 +39,21 @@ class GetRepositoriesCall {
           .toList();
 }
 
-class GetRepoFilesCall {
-  static Future<ApiCallResponse> call() async {
+class GetFilesCall {
+  static Future<ApiCallResponse> call({
+    String? repo = 'Berthran/gitpeek',
+  }) async {
     return ApiManager.instance.makeApiCall(
-      callName: 'GetRepoFiles',
-      apiUrl: 'https://da95-102-89-85-113.ngrok-free.app/get_files',
+      callName: 'GetFiles',
+      apiUrl: 'https://efa5-102-89-68-196.ngrok-free.app/get_files',
       callType: ApiCallType.GET,
       headers: {
         'ngrok-skip-browser-warning': 'true',
         'Content-Type': 'application/json',
       },
-      params: {},
+      params: {
+        'repo': repo,
+      },
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
@@ -58,6 +62,16 @@ class GetRepoFilesCall {
       alwaysAllowBody: false,
     );
   }
+
+  static List<String>? repositoryFiles(dynamic response) => (getJsonField(
+        response,
+        r'''$''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
 }
 
 class ApiPagingParams {
