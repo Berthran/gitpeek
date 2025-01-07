@@ -63,6 +63,21 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.String,
             ),
           ),
+        ),
+        FFRoute(
+          name: 'normalPostDetailsCopy',
+          path: '/normal_post_details_copy',
+          builder: (context, params) => NormalPostDetailsCopyWidget(
+            selectedRepo: params.getParam(
+              'selectedRepo',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'previewPost',
+          path: '/preview_post',
+          builder: (context, params) => const PreviewPostWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

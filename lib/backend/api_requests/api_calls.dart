@@ -12,7 +12,7 @@ class GetRepositoriesCall {
   static Future<ApiCallResponse> call() async {
     return ApiManager.instance.makeApiCall(
       callName: 'GetRepositories',
-      apiUrl: 'https://efa5-102-89-68-196.ngrok-free.app/get_repositories',
+      apiUrl: 'https://capable-tick-stirring.ngrok-free.app/get_repositories',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -45,7 +45,7 @@ class GetFilesCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'GetFiles',
-      apiUrl: 'https://efa5-102-89-68-196.ngrok-free.app/get_files',
+      apiUrl: 'https://capable-tick-stirring.ngrok-free.app/get_files',
       callType: ApiCallType.GET,
       headers: {
         'ngrok-skip-browser-warning': 'true',

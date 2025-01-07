@@ -368,7 +368,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 0.0, 4.0, 0.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Flexible(
                                   child: Padding(
@@ -500,7 +500,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 0.0, 4.0, 0.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Flexible(
                                   child: Padding(
@@ -609,7 +609,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 0.0, 4.0, 0.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Flexible(
                                   child: Padding(
@@ -741,7 +741,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 0.0, 4.0, 0.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Flexible(
                                   child: Padding(
