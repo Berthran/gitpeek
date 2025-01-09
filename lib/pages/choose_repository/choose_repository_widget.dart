@@ -65,7 +65,7 @@ class _ChooseRepositoryWidgetState extends State<ChooseRepositoryWidget> {
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primary,
+          backgroundColor: const Color(0xFF333333),
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
             borderColor: Colors.transparent,
@@ -112,7 +112,7 @@ class _ChooseRepositoryWidgetState extends State<ChooseRepositoryWidget> {
                           width: 220.0,
                           height: 40.0,
                           decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context).primary,
+                            color: const Color(0xFFFFCC00),
                             borderRadius: BorderRadius.circular(14.0),
                           ),
                           alignment: const AlignmentDirectional(0.0, 0.0),
@@ -124,7 +124,7 @@ class _ChooseRepositoryWidgetState extends State<ChooseRepositoryWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
-                                    fontFamily: 'Plus Jakarta Sans',
+                                    fontFamily: 'Montserrat',
                                     fontSize: 20.0,
                                     letterSpacing: 0.0,
                                   ),
@@ -160,9 +160,9 @@ class _ChooseRepositoryWidgetState extends State<ChooseRepositoryWidget> {
                     width: double.infinity,
                     height: 50.0,
                     textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Plus Jakarta Sans',
-                          color: FlutterFlowTheme.of(context).primaryText,
-                          fontSize: 16.0,
+                          fontFamily: 'Montserrat',
+                          color: const Color(0xFF333333),
+                          fontSize: 14.0,
                           letterSpacing: 0.0,
                           fontWeight: FontWeight.w500,
                         ),
@@ -174,7 +174,7 @@ class _ChooseRepositoryWidgetState extends State<ChooseRepositoryWidget> {
                     ),
                     fillColor: FlutterFlowTheme.of(context).secondaryBackground,
                     elevation: 0.0,
-                    borderColor: FlutterFlowTheme.of(context).secondaryText,
+                    borderColor: const Color(0xFF333333),
                     borderWidth: 1.0,
                     borderRadius: 8.0,
                     margin: const EdgeInsets.all(14.0),

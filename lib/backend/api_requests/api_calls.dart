@@ -74,6 +74,32 @@ class GetFilesCall {
           .toList();
 }
 
+class AuthenticateGithubCall {
+  static Future<ApiCallResponse> call() async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'AuthenticateGithub',
+      apiUrl: 'https://capable-tick-stirring.ngrok-free.app/',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-Type': 'application/json',
+        'ngrok-skip-browser-warning': 'true',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  static dynamic authURL(dynamic response) => getJsonField(
+        response,
+        r'''$''',
+      );
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;

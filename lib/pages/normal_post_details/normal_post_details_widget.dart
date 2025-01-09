@@ -77,7 +77,7 @@ class _NormalPostDetailsWidgetState extends State<NormalPostDetailsWidget> {
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primary,
+          backgroundColor: const Color(0xFFFFCC00),
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
             borderColor: Colors.transparent,
@@ -102,6 +102,7 @@ class _NormalPostDetailsWidgetState extends State<NormalPostDetailsWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(24.0, 12.0, 24.0, 0.0),
@@ -122,7 +123,7 @@ class _NormalPostDetailsWidgetState extends State<NormalPostDetailsWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
-                                    fontFamily: 'Plus Jakarta Sans',
+                                    fontFamily: 'Montserrat',
                                     color: FlutterFlowTheme.of(context)
                                         .primaryText,
                                     fontSize: 16.0,
@@ -318,7 +319,7 @@ class _NormalPostDetailsWidgetState extends State<NormalPostDetailsWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
-                                    fontFamily: 'Plus Jakarta Sans',
+                                    fontFamily: 'Montserrat',
                                     color: FlutterFlowTheme.of(context)
                                         .primaryText,
                                     fontSize: 16.0,
@@ -489,7 +490,7 @@ class _NormalPostDetailsWidgetState extends State<NormalPostDetailsWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
-                                    fontFamily: 'Plus Jakarta Sans',
+                                    fontFamily: 'Montserrat',
                                     color: FlutterFlowTheme.of(context)
                                         .primaryText,
                                     fontSize: 16.0,
@@ -537,8 +538,7 @@ class _NormalPostDetailsWidgetState extends State<NormalPostDetailsWidget> {
                                 ),
                             buttonPosition: RadioButtonPosition.left,
                             direction: Axis.horizontal,
-                            radioButtonColor:
-                                FlutterFlowTheme.of(context).primary,
+                            radioButtonColor: const Color(0xFF333333),
                             inactiveRadioButtonColor:
                                 FlutterFlowTheme.of(context).secondaryText,
                             toggleable: false,
@@ -717,7 +717,7 @@ class _NormalPostDetailsWidgetState extends State<NormalPostDetailsWidget> {
                             16.0, 0.0, 16.0, 0.0),
                         iconPadding:
                             const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: FlutterFlowTheme.of(context).primary,
+                        color: const Color(0xFFFFCC00),
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
                                   fontFamily: 'Plus Jakarta Sans',

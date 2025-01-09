@@ -51,19 +51,25 @@ class _HomePageWidgetState extends State<HomePageWidget> {
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Row(
+                  const Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Icon(
-                        Icons.person,
-                        color: FlutterFlowTheme.of(context).secondaryText,
-                        size: 24.0,
+                      Opacity(
+                        opacity: 0.5,
+                        child: Icon(
+                          Icons.person,
+                          color: Color(0xFF333333),
+                          size: 24.0,
+                        ),
                       ),
-                      FaIcon(
-                        FontAwesomeIcons.signOutAlt,
-                        color: FlutterFlowTheme.of(context).accent1,
-                        size: 24.0,
+                      Opacity(
+                        opacity: 0.5,
+                        child: FaIcon(
+                          FontAwesomeIcons.signOutAlt,
+                          color: Color(0xFFFFCC00),
+                          size: 24.0,
+                        ),
                       ),
                     ],
                   ),
@@ -83,14 +89,29 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 8.0, 0.0),
+                                child: Text(
+                                  'Welcome',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Montserrat',
+                                        color: const Color(0xFF333333),
+                                        fontSize: 30.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                ),
+                              ),
                               Text(
-                                'Welcome Berthran!',
+                                'Berthran',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Lato',
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
+                                      fontFamily: 'Montserrat',
+                                      color: const Color(0xFF333333),
                                       fontSize: 30.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w600,
@@ -115,7 +136,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Lato',
+                                            fontFamily: 'Montserrat',
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryText,
                                             fontSize: 15.0,
@@ -135,7 +156,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 52.0, 0.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -153,7 +174,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 16.0, 0.0, 16.0, 0.0),
                             iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context).secondaryText,
+                            color: const Color(0xFF333333),
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
@@ -163,8 +184,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 ),
                             elevation: 0.0,
                             borderRadius: BorderRadius.circular(22.0),
-                            hoverColor:
-                                FlutterFlowTheme.of(context).primaryText,
+                            hoverColor: const Color(0xFF32CD32),
                           ),
                         ),
                         Padding(
@@ -181,7 +201,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   16.0, 0.0, 16.0, 0.0),
                               iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).secondaryText,
+                              color: const Color(0xFFFFCC00),
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
@@ -191,8 +211,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   ),
                               elevation: 0.0,
                               borderRadius: BorderRadius.circular(22.0),
-                              hoverColor:
-                                  FlutterFlowTheme.of(context).primaryText,
+                              hoverColor: const Color(0xFF32CD32),
                             ),
                           ),
                         ),
@@ -238,11 +257,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 16.0, 0.0, 16.0, 0.0),
                             iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context).primary,
+                            color: const Color(0xFF32CD32),
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
-                                  fontFamily: 'Plus Jakarta Sans',
+                                  fontFamily: 'Montserrat',
                                   color: Colors.white,
                                   fontSize: 16.0,
                                   letterSpacing: 0.0,
@@ -267,11 +286,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   16.0, 0.0, 16.0, 0.0),
                               iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).secondaryText,
+                              color: const Color(0xFF333333),
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
-                                    fontFamily: 'Plus Jakarta Sans',
+                                    fontFamily: 'Montserrat',
                                     color: Colors.white,
                                     letterSpacing: 0.0,
                                   ),
@@ -296,11 +315,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   16.0, 0.0, 16.0, 0.0),
                               iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).secondaryText,
+                              color: const Color(0xFF333333),
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
-                                    fontFamily: 'Plus Jakarta Sans',
+                                    fontFamily: 'Montserrat',
                                     color: Colors.white,
                                     letterSpacing: 0.0,
                                   ),
@@ -352,15 +371,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       ),
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 4.0, 0.0),
-                                child: FaIcon(
-                                  FontAwesomeIcons.checkSquare,
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  size: 24.0,
-                                ),
-                              ),
                             ],
                           ),
                           Padding(
@@ -400,10 +410,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                FaIcon(
+                                const FaIcon(
                                   FontAwesomeIcons.linkedin,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
+                                  color: Color(0xFF007BFF),
                                   size: 24.0,
                                 ),
                                 Padding(
@@ -484,15 +493,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       ),
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 4.0, 0.0),
-                                child: FaIcon(
-                                  FontAwesomeIcons.checkSquare,
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  size: 24.0,
-                                ),
-                              ),
                             ],
                           ),
                           Padding(
@@ -532,10 +532,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                FaIcon(
+                                const FaIcon(
                                   FontAwesomeIcons.linkedin,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
+                                  color: Color(0xFF007BFF),
                                   size: 24.0,
                                 ),
                                 Padding(
@@ -593,15 +592,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       ),
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 4.0, 0.0),
-                                child: FaIcon(
-                                  FontAwesomeIcons.checkSquare,
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  size: 24.0,
-                                ),
-                              ),
                             ],
                           ),
                           Padding(
@@ -641,10 +631,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                FaIcon(
+                                const FaIcon(
                                   FontAwesomeIcons.linkedin,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
+                                  color: Color(0xFF007BFF),
                                   size: 24.0,
                                 ),
                                 Padding(
@@ -725,15 +714,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       ),
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 4.0, 0.0),
-                                child: FaIcon(
-                                  FontAwesomeIcons.checkSquare,
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  size: 24.0,
-                                ),
-                              ),
                             ],
                           ),
                           Padding(
@@ -773,10 +753,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                FaIcon(
+                                const FaIcon(
                                   FontAwesomeIcons.linkedin,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
+                                  color: Color(0xFF007BFF),
                                   size: 24.0,
                                 ),
                                 Padding(

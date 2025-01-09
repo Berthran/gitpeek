@@ -1,4 +1,3 @@
-import '/flutter_flow/flutter_flow_autocomplete_options_list.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -25,9 +24,15 @@ class _PreviewPostWidgetState extends State<PreviewPostWidget> {
     super.initState();
     _model = createModel(context, () => PreviewPostModel());
 
-    _model.textController1 ??= TextEditingController();
+    _model.textController1 ??= TextEditingController(
+        text:
+            'Today was a productive day in my full-stack journey! 🔨 I successfully implemented user authentication in my project, a crucial step towards building a secure and user-friendly application. This involved diving into OAuth 2.0, a widely used industry standard for secure authorization. \n\nLearning to leverage OAuth 2.0 has been an invaluable experience. I now understand how to grant third-party applications access to user data while maintaining strong security measures. This knowledge will be instrumental in building robust and secure applications in the future.\n\nHowever, the path to success was not without its obstacles. I encountered some CORS (Cross-Origin Resource Sharing) issues while integrating my frontend with the backend API. These issues prevented my frontend from making requests to the backend due to security restrictions. After some research and experimentation, I was able to resolve these issues by adding the appropriate headers to my API requests, ensuring seamless communication between the two components. \n\nOvercoming these challenges has been incredibly rewarding. It has not only deepened my understanding of frontend development but also instilled in me the importance of problem-solving and perseverance in the face of technical hurdles. I am eager to continue building upon this foundation and further enhance my skills on this exciting journey towards a fulfilling career as a full-stack engineer. #FullStackDeveloper #LearningJourney #OAuth2 #Frontend #Backend #NeverStopLearning \n');
+    _model.textFieldFocusNode1 ??= FocusNode();
 
-    _model.textController2 ??= TextEditingController();
+    _model.textController2 ??= TextEditingController(
+        text:
+            'Today was a big day in my full-stack journey! 🔨 I successfully implemented user authentication in my project, learning about OAuth 2.0 for secure login. 🔐 Along the way, I encountered some CORS issues during API integration, but I was able to overcome them by adding the necessary headers. 🤓 Feeling accomplished and excited to keep building! #FullStackDeveloper #LearningJourney #OAuth2 #Frontend #Backend #NeverStopLearning');
+    _model.textFieldFocusNode2 ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -50,7 +55,7 @@ class _PreviewPostWidgetState extends State<PreviewPostWidget> {
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primary,
+          backgroundColor: const Color(0xFF333333),
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
             borderColor: Colors.transparent,
@@ -110,7 +115,7 @@ class _PreviewPostWidgetState extends State<PreviewPostWidget> {
                                     16.0, 0.0, 16.0, 0.0),
                                 iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
-                                color: const Color(0xFF533E0B),
+                                color: const Color(0xFF007BFF),
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
@@ -134,129 +139,64 @@ class _PreviewPostWidgetState extends State<PreviewPostWidget> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Expanded(
-                              child: Autocomplete<String>(
-                                initialValue: const TextEditingValue(),
-                                optionsBuilder: (textEditingValue) {
-                                  if (textEditingValue.text == '') {
-                                    return const Iterable<String>.empty();
-                                  }
-                                  return ['Option 1'].where((option) {
-                                    final lowercaseOption =
-                                        option.toLowerCase();
-                                    return lowercaseOption.contains(
-                                        textEditingValue.text.toLowerCase());
-                                  });
-                                },
-                                optionsViewBuilder:
-                                    (context, onSelected, options) {
-                                  return AutocompleteOptionsList(
-                                    textFieldKey: _model.textFieldKey1,
-                                    textController: _model.textController1!,
-                                    options: options.toList(),
-                                    onSelected: onSelected,
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Plus Jakarta Sans',
-                                          letterSpacing: 0.0,
-                                        ),
-                                    textHighlightStyle: const TextStyle(),
-                                    elevation: 4.0,
-                                    optionBackgroundColor:
-                                        FlutterFlowTheme.of(context)
-                                            .primaryBackground,
-                                    optionHighlightColor:
-                                        FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                    maxHeight: 200.0,
-                                  );
-                                },
-                                onSelected: (String selection) {
-                                  safeSetState(() => _model
-                                      .textFieldSelectedOption1 = selection);
-                                  FocusScope.of(context).unfocus();
-                                },
-                                fieldViewBuilder: (
-                                  context,
-                                  textEditingController,
-                                  focusNode,
-                                  onEditingComplete,
-                                ) {
-                                  _model.textFieldFocusNode1 = focusNode;
-
-                                  _model.textController1 =
-                                      textEditingController;
-                                  return TextFormField(
-                                    key: _model.textFieldKey1,
-                                    controller: textEditingController,
-                                    focusNode: focusNode,
-                                    onEditingComplete: onEditingComplete,
-                                    autofocus: false,
-                                    textInputAction: TextInputAction.done,
-                                    obscureText: false,
-                                    decoration: InputDecoration(
-                                      isDense: true,
-                                      hintText:
-                                          'Today was a productive day in my full-stack journey! 🔨 I successfully implemented user authentication in my project, a crucial step towards building a secure and user-friendly application. This involved diving into OAuth 2.0, a widely used industry standard for secure authorization. \n\nLearning to leverage OAuth 2.0 has been an invaluable experience. I now understand how to grant third-party applications access to user data while maintaining strong security measures. This knowledge will be instrumental in building robust and secure applications in the future.\n\nHowever, the path to success was not without its obstacles. I encountered some CORS (Cross-Origin Resource Sharing) issues while integrating my frontend with the backend API. These issues prevented my frontend from making requests to the backend due to security restrictions. After some research and experimentation, I was able to resolve these issues by adding the appropriate headers to my API requests, ensuring seamless communication between the two components. \n\nOvercoming these challenges has been incredibly rewarding. It has not only deepened my understanding of frontend development but also instilled in me the importance of problem-solving and perseverance in the face of technical hurdles. I am eager to continue building upon this foundation and further enhance my skills on this exciting journey towards a fulfilling career as a full-stack engineer. #FullStackDeveloper #LearningJourney #OAuth2 #Frontend #Backend #NeverStopLearning \n',
-                                      hintStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .override(
-                                            fontFamily: 'Outfit',
-                                            letterSpacing: 0.0,
-                                          ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          width: 1.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
+                              child: TextFormField(
+                                controller: _model.textController1,
+                                focusNode: _model.textFieldFocusNode1,
+                                autofocus: false,
+                                textInputAction: TextInputAction.done,
+                                obscureText: false,
+                                decoration: InputDecoration(
+                                  isDense: true,
+                                  hintStyle: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .override(
+                                        fontFamily: 'Outfit',
+                                        letterSpacing: 0.0,
                                       ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: const BorderSide(
-                                          color: Color(0x00000000),
-                                          width: 1.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                      errorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .error,
-                                          width: 1.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                      focusedErrorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .error,
-                                          width: 1.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                      filled: true,
-                                      fillColor: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: const BorderSide(
+                                      color: Color(0xFF333333),
+                                      width: 1.0,
                                     ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Plus Jakarta Sans',
-                                          letterSpacing: 0.0,
-                                        ),
-                                    textAlign: TextAlign.justify,
-                                    maxLines: 15,
-                                    cursorColor: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    validator: _model.textController1Validator
-                                        .asValidator(context),
-                                  );
-                                },
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: const BorderSide(
+                                      color: Color(0x00000000),
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  errorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  focusedErrorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  filled: true,
+                                  fillColor: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Plus Jakarta Sans',
+                                      letterSpacing: 0.0,
+                                    ),
+                                textAlign: TextAlign.justify,
+                                maxLines: 15,
+                                cursorColor:
+                                    FlutterFlowTheme.of(context).primaryText,
+                                validator: _model.textController1Validator
+                                    .asValidator(context),
                               ),
                             ),
                           ],
@@ -280,7 +220,7 @@ class _PreviewPostWidgetState extends State<PreviewPostWidget> {
                                     16.0, 0.0, 16.0, 0.0),
                                 iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
-                                color: const Color(0xFF533E0B),
+                                color: FlutterFlowTheme.of(context).primaryText,
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
@@ -304,129 +244,64 @@ class _PreviewPostWidgetState extends State<PreviewPostWidget> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Expanded(
-                              child: Autocomplete<String>(
-                                initialValue: const TextEditingValue(),
-                                optionsBuilder: (textEditingValue) {
-                                  if (textEditingValue.text == '') {
-                                    return const Iterable<String>.empty();
-                                  }
-                                  return ['Option 1'].where((option) {
-                                    final lowercaseOption =
-                                        option.toLowerCase();
-                                    return lowercaseOption.contains(
-                                        textEditingValue.text.toLowerCase());
-                                  });
-                                },
-                                optionsViewBuilder:
-                                    (context, onSelected, options) {
-                                  return AutocompleteOptionsList(
-                                    textFieldKey: _model.textFieldKey2,
-                                    textController: _model.textController2!,
-                                    options: options.toList(),
-                                    onSelected: onSelected,
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Plus Jakarta Sans',
-                                          letterSpacing: 0.0,
-                                        ),
-                                    textHighlightStyle: const TextStyle(),
-                                    elevation: 4.0,
-                                    optionBackgroundColor:
-                                        FlutterFlowTheme.of(context)
-                                            .primaryBackground,
-                                    optionHighlightColor:
-                                        FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                    maxHeight: 200.0,
-                                  );
-                                },
-                                onSelected: (String selection) {
-                                  safeSetState(() => _model
-                                      .textFieldSelectedOption2 = selection);
-                                  FocusScope.of(context).unfocus();
-                                },
-                                fieldViewBuilder: (
-                                  context,
-                                  textEditingController,
-                                  focusNode,
-                                  onEditingComplete,
-                                ) {
-                                  _model.textFieldFocusNode2 = focusNode;
-
-                                  _model.textController2 =
-                                      textEditingController;
-                                  return TextFormField(
-                                    key: _model.textFieldKey2,
-                                    controller: textEditingController,
-                                    focusNode: focusNode,
-                                    onEditingComplete: onEditingComplete,
-                                    autofocus: false,
-                                    textInputAction: TextInputAction.done,
-                                    obscureText: false,
-                                    decoration: InputDecoration(
-                                      isDense: true,
-                                      hintText:
-                                          'Today was a productive day in my full-stack journey! 🔨 I successfully implemented user authentication in my project, a crucial step towards building a secure and user-friendly application. This involved diving into OAuth 2.0, a widely used industry standard for secure authorization. \n\nLearning to leverage OAuth 2.0 has been an invaluable experience. I now understand how to grant third-party applications access to user data while maintaining strong security measures. This knowledge will be instrumental in building robust and secure applications in the future.\n\nHowever, the path to success was not without its obstacles. I encountered some CORS (Cross-Origin Resource Sharing) issues while integrating my frontend with the backend API. These issues prevented my frontend from making requests to the backend due to security restrictions. After some research and experimentation, I was able to resolve these issues by adding the appropriate headers to my API requests, ensuring seamless communication between the two components. \n\nOvercoming these challenges has been incredibly rewarding. It has not only deepened my understanding of frontend development but also instilled in me the importance of problem-solving and perseverance in the face of technical hurdles. I am eager to continue building upon this foundation and further enhance my skills on this exciting journey towards a fulfilling career as a full-stack engineer. #FullStackDeveloper #LearningJourney #OAuth2 #Frontend #Backend #NeverStopLearning \n',
-                                      hintStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .override(
-                                            fontFamily: 'Outfit',
-                                            letterSpacing: 0.0,
-                                          ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          width: 1.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
+                              child: TextFormField(
+                                controller: _model.textController2,
+                                focusNode: _model.textFieldFocusNode2,
+                                autofocus: false,
+                                textInputAction: TextInputAction.done,
+                                obscureText: false,
+                                decoration: InputDecoration(
+                                  isDense: true,
+                                  hintStyle: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .override(
+                                        fontFamily: 'Outfit',
+                                        letterSpacing: 0.0,
                                       ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: const BorderSide(
-                                          color: Color(0x00000000),
-                                          width: 1.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                      errorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .error,
-                                          width: 1.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                      focusedErrorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .error,
-                                          width: 1.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                      filled: true,
-                                      fillColor: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: const BorderSide(
+                                      color: Color(0xFF333333),
+                                      width: 1.0,
                                     ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Plus Jakarta Sans',
-                                          letterSpacing: 0.0,
-                                        ),
-                                    textAlign: TextAlign.justify,
-                                    maxLines: 15,
-                                    cursorColor: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    validator: _model.textController2Validator
-                                        .asValidator(context),
-                                  );
-                                },
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: const BorderSide(
+                                      color: Color(0x00000000),
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  errorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  focusedErrorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  filled: true,
+                                  fillColor: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Plus Jakarta Sans',
+                                      letterSpacing: 0.0,
+                                    ),
+                                textAlign: TextAlign.justify,
+                                maxLines: 15,
+                                cursorColor:
+                                    FlutterFlowTheme.of(context).primaryText,
+                                validator: _model.textController2Validator
+                                    .asValidator(context),
                               ),
                             ),
                           ],
@@ -460,7 +335,7 @@ class _PreviewPostWidgetState extends State<PreviewPostWidget> {
                                     16.0, 0.0, 16.0, 0.0),
                                 iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
-                                color: FlutterFlowTheme.of(context).primary,
+                                color: const Color(0xFFFFCC00),
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
