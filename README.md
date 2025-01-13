@@ -1,4 +1,4 @@
-# Git<span style="color:#333333">Speak</span>
+# Git<span style="color:#ccff00">Speak</span>
 
 Welcome to **Git<span style="color:#333333">Speak</span>**, a streamlined platform that bridges the gap between Git repositories and effective collaboration. With Git<span style="color:#333333">Speak</span>, you can explore, communicate, and collaborate on your coding projects like never before.
 
@@ -100,7 +100,7 @@ This project is licensed under the MIT License. See the LICENSE file for details
 ## Contact
 For support or inquiries, please contact:
 - **Author:** Daniel Berthran
-- **Email:** daniel.berthran@example.com
+- **Email:** berthran146@example.com
 - **Location:** Nigeria
 
 ---
