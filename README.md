@@ -1,6 +1,6 @@
-# Git<span style="color:#ccff00">Speak</span>
+# <span style="color:#333333">Git</span><span style="color:#ffcc00">Speak</span>
 
-Welcome to **Git<span style="color:#333333">Speak</span>**, a streamlined platform that bridges the gap between Git repositories and effective collaboration. With Git<span style="color:#333333">Speak</span>, you can explore, communicate, and collaborate on your coding projects like never before.
+Welcome to **<span style="color:#333333">Git</span><span style="color:#ffcc00">Speak</span>**, a streamlined platform that bridges the gap between Git repositories and effective collaboration. With Git<span style="color:#333333">Speak</span>, you can explore, communicate, and collaborate on your coding projects like never before.
 
 ---
 
