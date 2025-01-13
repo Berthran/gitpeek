@@ -38,6 +38,12 @@ def get_user_info(token):
     response = requests.get(url, headers=headers)
     return parse_response(response)
 
+def validate_access_token(access_token):
+    url = 'https://api.github.com/user'
+    headers = {'Authorization': f'Bearer {access_token}'}
+    response = requests.get(url, headers=headers)
+    print(f"Response: {response.status_code}")
+    return response.status_code == 200
 
 def get_repositories(token):
     url = 'https://api.github.com/user/repos'
@@ -49,8 +55,8 @@ def get_repositories(token):
     else:
         return [repo['name'] for repo in json_response]
 
-def get_files(token, repo):
-    url = f'https://api.github.com/repos/{repo}/contents'
+def get_files(token, username, repo):
+    url = f'https://api.github.com/repos/{username}/{repo}/contents'
     headers = {'Authorization': f'Bearer {token}'}
     response = requests.get(url, headers=headers)
     json_response = parse_response(response)

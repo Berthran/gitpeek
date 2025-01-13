@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account</title>
+  <link rel="stylesheet" href="signUpStyles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="form-container">
+      <h2>Complete your registration by creating a strong password</h2>
+
+      <form id="createAccountForm">
+        <div class="input-group">
+          <label for="passwordCreate">Password</label>
+          <input type="password" id="passwordCreate" name="passwordCreate" placeholder="Enter your password">
+          <button type="button" id="togglePasswordCreate" class="toggle-visibility">
+            <i id="passwordCreateIcon" class="fas fa-eye-slash"></i>
+          </button>
+        </div>
+
+        <div class="input-group">
+          <label for="passwordConfirm">Confirm Password</label>
+          <input type="password" id="passwordConfirm" name="passwordConfirm" placeholder="Confirm your password">
+          <button type="button" id="togglePasswordConfirm" class="toggle-visibility">
+            <i id="passwordConfirmIcon" class="fas fa-eye-slash"></i>
+          </button>
+        </div>
+
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

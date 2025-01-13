@@ -1,0 +1,312 @@
+/* General Styling */
+body {
+    font-family: 'Google Fonts', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+  }
+  
+  /* Scaffold */
+  .scaffold {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  
+  .container {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  /* Top Bar */
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  
+  .icon-container {
+    opacity: 0.5;
+  }
+  
+  .icon-person {
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .icon-signout {
+    font-size: 24px;
+    color: #FFCC00;
+  }
+  
+  /* Content Section */
+  .content {
+    flex: 1;
+    background-color: #f4f4f9;
+    padding-top: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  h2, h3 {
+    color: #333;
+    font-size: 30px;
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  /* Description */
+  .description {
+    text-align: center;
+    font-size: 15px;
+    color: #666;
+    font-style: italic;
+    font-weight: 500;
+    margin-top: 4px;
+    margin-bottom: 32px;
+  }
+  
+  /* Buttons Section */
+  .buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+  }
+  
+  button {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 22px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .normal-post-button {
+    background-color: #333;
+    color: white;
+  }
+  
+  .normal-post-button:hover {
+    background-color: #32CD32;
+  }
+  
+  .challenge-post-button {
+    background-color: #FFCC00;
+    color: white;
+  }
+  
+  .challenge-post-button:hover {
+    background-color: #32CD32;
+  }
+
+  /* Title Styling */
+h2.section-title {
+    font-family: 'Lato', sans-serif;
+    color: #333;  /* Primary Text Color */
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 0.0;
+  }
+  
+  /* Button Group */
+  .button-group {
+    display: flex;
+    gap: 12px;
+  }
+  
+  /* Button Styling */
+  .post-button {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 22px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .all-posts {
+    background-color: #32CD32; /* Green */
+    color: white;
+  }
+  
+  .all-posts:hover {
+    background-color: #4CAF50; /* Slightly darker green */
+  }
+  
+  .normal-post {
+    background-color: #333333; /* Dark gray */
+    color: white;
+  }
+  
+  .normal-post:hover {
+    background-color: #444444; /* Slightly lighter gray */
+  }
+
+  
+  /* Challenge Button */
+.challenge-button {
+    background-color: #333333; /* Dark Gray */
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 22px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .challenge-button:hover {
+    background-color: #444444; /* Slightly lighter gray */
+  }
+  
+  /* Container Styling */
+  .container {
+    padding-top: 15px;
+  }
+  
+  /* HTTP Requests Section */
+  .http-requests-section {
+    background-color: #f2f2f2;
+    border-radius: 8px;
+    border: 4px solid #ffffff;
+    width: 100%;
+    height: 110px;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  
+  .http-requests-section .section-title {
+    font-family: 'Roboto Mono', monospace;
+    color: #333;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  
+  .http-requests-section .description {
+    font-family: 'Roboto', sans-serif;
+    color: #555;
+    font-size: 12px;
+    font-weight: 500;
+    font-style: italic;
+    text-align: justify;
+  }
+  
+  .social-icons a {
+    color: #007BFF;
+    font-size: 24px;
+    margin-right: 8px;
+  }
+  
+  .social-icons i {
+    transition: color 0.3s ease;
+  }
+  
+  .social-icons i:hover {
+    color: #1DA1F2; /* Twitter blue on hover */
+  }
+  
+  /* Inner Container for Day 1 Section */
+  .container-inner {
+    background-color: #f2f2f2;
+    border-radius: 8px;
+    border: 4px solid #ffffff;
+    width: 100%;
+    height: 130px;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  
+  .container-inner .section-title {
+    font-family: 'Roboto Mono', monospace;
+    color: #333;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  
+  .container-inner .task-title {
+    font-family: 'Roboto Mono', monospace;
+    color: #333;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  
+/* Container Styles */
+.container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  /* HTTP Requests Section Styles */
+  .http-requests-section {
+    background-color: #f1f1f1;
+    border-radius: 8px;
+    border: 4px solid #fff;
+    padding: 20px;
+  }
+  
+  .text-container {
+    margin-bottom: 10px;
+  }
+  
+  .description {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    font-size: 12px;
+    font-weight: 500;
+    font-style: italic;
+    text-align: justify;
+  }
+  
+  .social-icons {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .social-icons a {
+    color: #007BFF;
+    font-size: 24px;
+  }
+  
+  .social-icons a:hover {
+    color: #0056b3;
+  }
+  
+  /* Button Styles */
+  .button-section {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .button {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 22px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.0;
+    font-weight: 500;
+  }
+  
+  .button:hover {
+    background-color: #555;
+  }
+  
+  

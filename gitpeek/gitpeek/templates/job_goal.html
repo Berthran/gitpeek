@@ -1,0 +1,62 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Goals</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='skills.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Select 3 most relevant short-term goals</h1>
+	<form method="POST">
+       
+         <select name="job_goal" multiple>
+            <option value="Career change">Career change</option>
+            <option value="Career advancement">Career advancement</option>
+            <option value="Skill development">Skill development</option>
+            <option value="Networking">Networking</option>
+            <option value="Job search">Job search</option>
+            <option value="Freelancing">Freelancing</option>
+            <option value="Entrepreneurship">Entrepreneurship</option>
+            <option value="Remote work">Remote work</option>
+            <option value="Internship">Internship</option>
+            <option value="Volunteering">Volunteering</option>
+            <option value="Other">Other</option>
+         </select>
+	</form>
+    </div>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Goals</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='skills.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Select 3 most relevant short-term goals</h1>
+        <form method="POST">
+            <div class="checkboxes">
+                <input type="checkbox" name="job_goal" value="Career change"> Career change<br>
+                <input type="checkbox" name="job_goal" value="Career advancement"> Career advancement<br>
+                <input type="checkbox" name="job_goal" value="Skill development"> Skill development<br>
+                <input type="checkbox" name="job_goal" value="Networking"> Networking<br>
+                <input type="checkbox" name="job_goal" value="Job search"> Job search<br>
+                <input type="checkbox" name="job_goal" value="Freelancing"> Freelancing<br>
+                <input type="checkbox" name="job_goal" value="Entrepreneurship"> Entrepreneurship<br>
+                <input type="checkbox" name="job_goal" value="Remote work"> Remote work<br>
+                <input type="checkbox" name="job_goal" value="Internship"> Internship<br>
+                <input type="checkbox" name="job_goal" value="Volunteering"> Volunteering<br>
+                <input type="checkbox" name="job_goal" value="Other"> Other<br>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

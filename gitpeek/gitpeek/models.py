@@ -1,8 +1,9 @@
 '''
 Tables of the Database
 '''
+from sqlalchemy.dialects.postgresql import ARRAY # type: ignore
 from datetime import datetime
-from gitpeek import db
+from gitpeek import db # type: ignore
 
 
 
@@ -27,7 +28,7 @@ class Profile(db.Model):
     skill_level = db.Column(db.String(120))
     tech_skill = db.Column(db.String(120))
     job_type = db.Column(db.String(120))
-    job_goal = db.Column(db.String(120))
+    job_goals = db.Column(ARRAY(db.String(120)), nullable=True)
     user = db.relationship('User', back_populates='profile', lazy=True)
     
     
