@@ -66,7 +66,7 @@ Ensure you have the following installed on your system:
    
 6. Run the application:
    ```bash
-   flask run
+   python3 run.py
    ```
 
 7. Access the app at `http://127.0.0.1:5000/`.
@@ -106,7 +106,7 @@ This project is licensed under the MIT License. See the LICENSE file for details
 ## Contact
 For support or inquiries, please contact:
 - **Author:** Daniel Berthran
-- **Email:** berthran146@example.com
+- **Email:** berthran146@gmail.com
 - **Location:** Nigeria
 
 
