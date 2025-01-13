@@ -74,7 +74,7 @@ def list_repos():
         i += 1
     repo_names = [repo['full_name'] for repo in repos]
     return jsonify({"repositories": repo_names})
-
+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
 
 # LIST ALL FILES IN THE REPOSITORY
 @app.route('/files')
@@ -109,7 +109,7 @@ def latest_commit():
     repo_name = request.args.get('repo_name')
     if not access_token or not repo_name:
         return "Access token and repository name are required", 400
-
+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
     # Fetch the latest commits from the repository
     response = requests.get(
         f"{GITHUB_API_URL}/repos/{repo_name}/commits",
