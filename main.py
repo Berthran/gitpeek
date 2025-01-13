@@ -4,8 +4,6 @@ import base64
 
 app = Flask(__name__)
 
-GITHUB_CLIENT_ID = "Ov23liKLyqui1XfzY6pZ"
-GITHUB_CLIENT_SECRET = "3328d75a3fb1779b797f821f59f50600aadfb7c5"
 
 GITHUB_AUTH_URL = "https://github.com/login/oauth/authorize"
 GITHUB_TOKEN_URL = "https://github.com/login/oauth/access_token"
