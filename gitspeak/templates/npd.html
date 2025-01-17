@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Form</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Section 1: Question and Autocomplete Text Field (First Task) -->
+    <div class="padding">
+      <div class="row">
+        <div class="question-text">
+          <p>What specific task(s) did you achieve today?</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="autocomplete-container">
+          <input type="text" id="autocomplete1" class="autocomplete-input" placeholder="e.g., learned how to use 'X' library effectively">
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 2: Question and Autocomplete Text Field (Second Task) -->
+    <div class="padding">
+      <div class="row">
+        <div class="question-text">
+          <p>What other task(s) did you achieve today?</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="autocomplete-container">
+          <input type="text" id="autocomplete2" class="autocomplete-input" placeholder="e.g., worked on improving database queries">
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 3: Challenge Question -->
+    <div class="padding">
+      <div class="row">
+        <div class="question-text">
+          <p>Did you face any challenges in accomplishing the task(s) above?</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 4: Radio Buttons (Yes/No) -->
+    <div class="padding">
+      <div class="row">
+        <div class="radio-buttons">
+          <label>
+            <input type="radio" name="challenge" value="No" checked>
+            No
+          </label>
+          <label>
+            <input type="radio" name="challenge" value="Yes">
+            Yes
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 5: Conditional Autocomplete Text Field -->
+    <div class="padding">
+      <div class="row">
+        <div class="autocomplete-container" id="conditionalField" style="display: none;">
+          <input type="text" id="autocomplete3" class="autocomplete-input" placeholder="e.g., encountered CORS issues during API integration">
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 6: Preview Button -->
+    <div class="padding">
+      <div class="row">
+        <button class="preview-button" onclick="previewPost()">Preview</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Handling Radio Button Change
+    document.querySelectorAll('input[name="challenge"]').forEach((radio) => {
+      radio.addEventListener('change', function() {
+        const conditionalField = document.getElementById('conditionalField');
+        if (this.value === 'Yes') {
+          conditionalField.style.display = 'block';
+        } else {
+          conditionalField.style.display = 'none';
+        }
+      });
+    });
+
+    // Preview Button Action
+    function previewPost() {
+      alert('Previewing the post...');
+      // Logic to navigate to the preview page can be added here.
+    }
+  </script>
+</body>
+</html>

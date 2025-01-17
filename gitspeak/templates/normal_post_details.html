@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Form</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='normal_post_details.css') }}">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="/normal_post/select_repo" class="back-arrow">←</a>
+  </nav>
+ 
+
+
+  <div class="container">
+    <form method="POST" action="/normal_post/post_details">
+      <!-- Section 1: Question and Autocomplete Text Field (First Task) -->     
+      <div class="padding">
+        <div class="row">
+          <div class="question-text">
+            <p>What specific task(s) did you achieve today?</p>
+          </div>
+        </div>
+      </div>
+      <!-- Autocomplete Text Field -->
+      <div class="padding question">
+        <div class="row">
+          <div class="autocomplete-container">
+            <input type="text" id="autocomplete1" name="tasks_achieved" class="autocomplete-input" placeholder="e.g., finished the login functionality">
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Question and Autocomplete Text Field (Learning Task) -->     
+      <div class="padding">
+        <div class="row">
+          <div class="question-text">
+            <p>What did you learn from the task(s) accomplished?</p>
+          </div>
+        </div>
+      </div>
+      <!-- Autocomplete Text Field -->
+      <div class="padding question">
+        <div class="row">
+          <div class="autocomplete-container">
+            <input type="text" id="autocomplete2" name="learnings" class="autocomplete-input" placeholder="e.g., learned how to use 'X' library effectively">
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Section 2: Challenge Question -->
+      <div class="padding">
+        <div class="row">
+          <div class="question-text">
+            <p>Did you face any challenges in accomplishing the task(s) above?</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Radio Buttons (Yes/No) -->
+      <div class="padding">
+        <div class="row">
+          <div class="radio-buttons">
+            <label>
+              <input type="radio" name="challenge" value="No" checked>
+              No
+            </label>
+            <label>
+              <input type="radio" name="challenge" value="Yes">
+              Yes
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 4: Conditional Autocomplete Text Field -->
+      <div class="padding">
+        <div class="row">
+          <div class="autocomplete-container" id="conditionalField" style="display: none;">
+            <input type="text" id="autocomplete3" name="challenge_details" class="autocomplete-input" placeholder="e.g., encountered CORS issues during API integration">
+          </div>
+        </div>
+      </div>
+
+      <!-- Section: Dropdown for Selecting Repository Files -->
+      <div class="padding">
+        <div class="row">
+          <div class="question-text">
+            <p>Select the files you worked on today:</p>
+          </div>
+        </div>
+        <div class="padding question">
+          <div class="row">
+            <select id="fileDropdown" class="autocomplete-input">
+              <option value="" disabled selected>Select the files</option>
+              {% for file in repo_files %}
+                <option value="{{ file }}">{{ file }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+
+      <!-- Container to Display Selected Files -->
+      <div class="padding">
+        <div class="row">
+          <div id="selectedFilesContainer" class="selected-files-container"></div>
+        </div>
+      </div>
+      
+      <!-- Hidden Input to Store Selected Files -->
+      <input type="hidden" id="selectedFilesInput" name="selected_files">
+
+      <!-- Styles for the Selected Files -->
+      <style>
+        .selected-files-container {
+          display: flex;
+          gap: 10px;
+          margin-top: 10px;
+          flex-wrap: wrap;
+        }
+        .selected-file {
+          background-color: #f0f0f0;
+          padding: 5px 10px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          display: flex;
+          align-items: center;
+          gap: 5px;
+        }
+        .remove-button {
+          background: none;
+          border: none;
+          color: red;
+          cursor: pointer;
+          font-weight: bold;
+        }
+      </style>
+
+      <!-- JavaScript for Dropdown and Container Interaction -->
+      <script>
+        const fileDropdown = document.getElementById('fileDropdown');
+        const selectedFilesContainer = document.getElementById('selectedFilesContainer');
+        const selectedFilesInput = document.getElementById('selectedFilesInput'); // Hidden input element
+        const selectedFiles = new Set(); // To track unique selections
+
+        // Update hidden input with selected files
+        // Function to update the hidden input value
+        function updateHiddenInput() {
+          // selectedFilesInput.value = Array.from(selectedFiles).join(','); // Join selected files as a comma-separated string
+          selectedFilesInput.value = JSON.stringify(Array.from(selectedFiles)); // Convert Set to JSON string
+          }
+
+        fileDropdown.addEventListener('change', () => {
+          const selectedFile = fileDropdown.value;
+
+          // Add file only if it's not already selected
+          if (!selectedFiles.has(selectedFile)) {
+            selectedFiles.add(selectedFile);
+
+            // Create a div for the selected file
+            const fileDiv = document.createElement('div');
+            fileDiv.classList.add('selected-file');
+            fileDiv.textContent = selectedFile;
+
+            // Add a remove button
+            const removeButton = document.createElement('button');
+            removeButton.classList.add('remove-button');
+            removeButton.textContent = '×';
+            removeButton.onclick = () => {
+              selectedFiles.delete(selectedFile);
+              fileDiv.remove();
+            };
+
+            fileDiv.appendChild(removeButton);
+            selectedFilesContainer.appendChild(fileDiv);
+            updateHiddenInput(); // Update hidden input
+          }
+        });
+
+
+        // Handle form submission to ensure hidden input is updated
+        const form = document.querySelector('form');
+        form.addEventListener('submit', () => {
+          updateHiddenInput();
+        });
+      </script>
+
+       <!-- Section 5: Preview Button -->
+       <div class="padding">
+        <div class="row">
+          <!-- <button class="preview-button" onclick="previewPost()">Preview</button> -->
+           <button class="preview-button" type="submit">Preview</button>
+        </div>
+      </div>
+
+      
+    </div>
+  </form>
+
+  <script>
+    // Handling Radio Button Change
+    document.querySelectorAll('input[name="challenge"]').forEach((radio) => {
+      radio.addEventListener('change', function() {
+        const conditionalField = document.getElementById('conditionalField');
+        if (this.value === 'Yes') {
+          conditionalField.style.display = 'block';
+        } else {
+          conditionalField.style.display = 'none';
+        }
+      });
+    });
+
+    // Preview Button Action
+    function previewPost() {
+      alert('Previewing the post...');
+      // Logic to navigate to the preview page can be added here.
+    }
+  </script>
+</body>
+</html>

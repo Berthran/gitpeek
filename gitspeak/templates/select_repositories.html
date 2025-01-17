@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Repository</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='select_repo.css') }}">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="/home" class="back-arrow">←</a>
+    </nav>
+
+    <!-- Main Content -->
+     <form action="/normal_post/select_repo" method="POST" class="main-form">
+        <div class="container">
+            <h1>Select Repository</h1>
+            <select id="repo-dropdown" name="repo">
+                {% for repo in repos %}
+                    <option value="{{ repo }}">{{ repo }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="button-container">
+            <button type="submit" class="continue-btn">Continue</button>
+        </div>
+     </form>
+    
+</body>
+</html>
