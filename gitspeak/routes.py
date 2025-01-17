@@ -1,6 +1,7 @@
 '''
 Routes for our app
 '''
+import json
 from gitspeak import db, app
 from flask import jsonify, redirect, url_for, request, render_template, session # type: ignore
 from sqlalchemy.orm import Session # type: ignore
@@ -26,6 +27,12 @@ from datetime import timedelta
 #     return 'Cookie is not set'
 
 auth_url = f'https://github.com/login/oauth/authorize?client_id={CLIENT_ID}&redirect_uri=http://127.0.0.1:5000/callback'
+
+
+@app.route('/home', methods=['GET'])
+def home():
+    return render_template('home.html')
+
 
 @app.route('/')
 def index():
@@ -106,13 +113,17 @@ def login_password():
             access_token = user.access_token
             print(f"Access Token: {access_token}")
 
-            if validate_access_token(access_token):
-                session['username'] = user.username
-                return redirect(url_for('home'))
-            else:
-                return redirect(url_for('login_github'))
+            try:
+                if validate_access_token(access_token):
+                    session['username'] = user.username
+                    return redirect(url_for('home'))
+                else:
+                    return redirect(url_for('login_github'))
+            except Exception as e:
+                return jsonify(f"Connection Error: check network connection and try again"), 500
         else:
-            return render_template('index.html', auth_url=auth_url)
+                return render_template('index.html', auth_url=auth_url)
+
     return render_template('login_password.html')
 
 
@@ -257,9 +268,55 @@ def job_goal():
     return render_template('job_goal.html')
 
 
-@app.route('/home', methods=['GET'])
-def home():
-    return render_template('home.html')
+
+@app.route('/normal_post/select_repo', methods=['GET', 'POST'])
+def select_repositories():
+    if 'username' not in session:
+        return redirect(url_for('login_password'))
+    if request.method == 'POST':
+        return redirect(url_for('post_details', repo=request.form['repo']))
+    repositories = all_repositories()
+    return render_template('select_repositories.html', repos=repositories)
+
+
+@app.route('/normal_post/post_details', methods=['GET', 'POST'])
+def post_details():
+    if 'username' not in session:
+        return redirect(url_for('login_password'))
+    if request.method == 'POST':
+        tasks_achieved = request.form.get('tasks_achieved')
+        learnings = request.form.get('learnings')
+        challenge = request.form.get('challenge')
+        challenge_details = request.form.get('challenge_details') if challenge == 'Yes' else None
+        selected_files = request.form.get('selected_files')
+        print(f"Selected Files: {selected_files}")
+
+        # Convert JSON string to Python list
+        if selected_files:
+            selected_files_list = json.loads(selected_files)
+            selected_files = ', '.join(selected_files_list)
+        return redirect(url_for('preview_post', tasks_achieved=tasks_achieved,
+                                                learnings=learnings,
+                                                challenge=challenge,
+                                                challenge_details=challenge_details,
+                                                selected_files=selected_files))
+    repo = request.args.get('repo')
+    repo_files = get_repo_files(repo)
+    print(f"repo files: {repo_files}")
+    return render_template('normal_post_details.html', repo_files=repo_files)
+
+
+@app.route('/normal_post/preview_post', methods=['GET', 'POST'])
+def preview_post():
+    if 'username' not in session:
+        return redirect(url_for('login_password'))
+    tasks_achieved = request.args.get('tasks_achieved')
+    learnings = request.args.get('learnings')
+    challenge = request.args.get('challenge')
+    challenge_details = request.args.get('challenge_details')
+    selected_files = request.args.get('selected_files')
+    return jsonify({'tasks_achieved': tasks_achieved, 'learnings': learnings, 'challenge': challenge, 'challenge_details': challenge_details, 'selected_files': selected_files})
+
 
 @app.route('/logout')
 def logout():
@@ -268,23 +325,23 @@ def logout():
 
 @app.route('/get_repositories', methods=['GET', 'POST'])
 def all_repositories():
-    if 'username' not in session:
-        session['username'] = 'Berthran'
-    user = User.query.filter_by(username=session.get('username')).first()
-    # print(f"User: {user}")
-    access_token = user.access_token
-    repositories = get_repositories(access_token)
-    return jsonify(repositories)
+    try:
+        user = User.query.filter_by(username=session.get('username')).first()
+        access_token = user.access_token
+        repositories = get_repositories(access_token)
+        return repositories
+    except Exception as e:
+        return f"An error occurred: {e}", 500
 
-@app.route('/get_files', methods=['GET', 'POST'])
-def repo_files():
-    if 'username' not in session:
-        session['username'] = 'Berthran'
-    user = User.query.filter_by(username=session.get('username')).first()
-    access_token = user.access_token
-    repo = request.args.get('repo')
-    if not repo:
-        return jsonify({'error': 'Missing required query parameter: repo'}), 400
-    print(f"Repo: {repo}")
-    files = get_files(access_token, session['username'], repo)
-    return jsonify(files)
+@app.route('/get_files/<string:repo>', methods=['GET', 'POST'])
+def get_repo_files(repo):
+    try:
+        user = User.query.filter_by(username=session.get('username')).first()
+        access_token = user.access_token
+        if not repo:
+            return jsonify({'error': 'Missing required query parameter: repo'}), 400
+        print(f"Repo: {repo}")
+        files = get_files(access_token, session['username'], repo)
+        return files
+    except Exception as e:
+        return f"Cannot get repo_files: {e}", 500

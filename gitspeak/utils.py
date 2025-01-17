@@ -63,6 +63,3 @@ def get_files(token, username, repo):
     if not json_response:
         return []
     return [file['name'] for file in json_response]
-
-
-

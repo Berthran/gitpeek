@@ -21,7 +21,7 @@ show `all`, `public`, or `private` repositories. Default `all`
 - per_page (`interger`): display n number of repositories per page. Max `100`. Default `30`
 - page(`integer`): display repositories on page n. Default `1`
 
-**Statys Code**
+**Status Code**
 | Code | Description |
 | :-----:| :-----------: |
 | 200 | OK |
