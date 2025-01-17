@@ -2,11 +2,13 @@
 import os
 import requests # type: ignore
 from dotenv import load_dotenv # type: ignore
+import google.generativeai as genai # type: ignore
 
 
 load_dotenv()
 CLIENT_ID = os.getenv("CLIENT_ID")
 CLIENT_SECRET = os.getenv("CLIENT_SECRET")
+genai.configure(api_key=os.getenv('GEMINI_API_KEY'))
 
 
 def parse_response(response):
@@ -68,7 +70,7 @@ def get_files(token, username, repo, directory=None):
         return []
     
     repo_files = []
-    
+
     for file in json_response:
         print("File: ", file['name'], file['type'], "path:", file['path'])
         # Remove __pycache__ files and hidden files
@@ -79,3 +81,43 @@ def get_files(token, username, repo, directory=None):
         else:
             repo_files.append(f"{directory}/{file['name']}" if directory is not None else file['name']) 
     return repo_files
+
+
+def get_system_instructions(userProfile):
+    instruction = f"You are a {userProfile.skill_level} professional specializing in \
+                {userProfile.tech_skill}. Your current job status is '{userProfile.job_type}', \
+                and your career goal is to secure a role as a {userProfile.job_goals}. \
+                To achieve this, you are committed to sharing your tech journey through engaging posts \
+                on LinkedIn and X, as well as other relevant actions that align with your professional aspirations."
+
+    return instruction
+
+def get_linkedIn_prompt(tasks_achieved, learnings, challenge_details, selected_files):
+    prompt = f"Using the following information provided by the user: \
+     1. Task(s) accomplished: {tasks_achieved}. \
+     2. Learning(s) from the task(s): {learnings}. \
+     3. Challenges(s) faced: {challenge_details}. \
+     Generate a professional LinkedIn post within the 1,300-character limit. The post should summarize \
+    the user's accomplishments, highlight key learnings, and describe challenges along with how they were \
+    overcome. The tone should be motivational, professional, \
+    and engaging, ending with a call to action like asking for feedback or encouraging engagement. Use appropriate \
+    hashtags relevant to the context of the post, such as #Coding, #LearningJourney, or #TechCommunity."
+    return prompt
+
+def get_twitter_prompt(tasks_achieved, learnings, challenge_details, selected_files):
+        prompt = f"Using the following information provided by the user: \
+        1. Task(s) accomplished: {tasks_achieved}. \
+        2. Learning(s) from the task(s): {learnings}. \
+        3. Challenges(s) faced: {challenge_details}. \
+        Generate a concise and engaging post for X (Twitter) within the 280-character limit. \
+        The post should briefly summarize the user's accomplishments, key learnings, and challenges, \
+        ending on a positive note. Include hashtags like #TechJourney, #Coding, or #DevLife to maximize \
+        reach. Use emojis sparingly to enhance readability and engagement."
+        return prompt
+
+def createPostTitle(post_content, model):
+    title = model.generate_content(f"create a title for the post: {post_content}").text
+    return title
+
+
+

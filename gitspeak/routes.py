@@ -2,11 +2,14 @@
 Routes for our app
 '''
 import json
-from gitspeak import db, app
+from gitspeak import db, app # type: ignore
 from flask import jsonify, redirect, url_for, request, render_template, session # type: ignore
 from sqlalchemy.orm import Session # type: ignore
-from gitspeak.models import User, Profile, Post
-from gitspeak.utils import exchange_code, get_user_info, CLIENT_ID, get_repositories, get_files, validate_access_token
+from gitspeak.models import User, Profile, Post # type: ignore
+from gitspeak.utils import (exchange_code, get_user_info, CLIENT_ID, # type: ignore
+                            get_repositories, get_files, validate_access_token, genai,
+                            get_system_instructions, get_linkedIn_prompt, get_twitter_prompt,
+                            createPostTitle)
 from flask import make_response # type: ignore
 from datetime import timedelta
 
@@ -302,20 +305,51 @@ def post_details():
                                                 selected_files=selected_files))
     repo = request.args.get('repo')
     repo_files = get_repo_files(repo)
-    print(f"repo files: {repo_files}")
     return render_template('normal_post_details.html', repo_files=repo_files)
+
+
 
 
 @app.route('/normal_post/preview_post', methods=['GET', 'POST'])
 def preview_post():
     if 'username' not in session:
         return redirect(url_for('login_password'))
+    
+    profile = User.query.filter_by(username=session['username']).first().profile
+    model = genai.GenerativeModel(model_name="gemini-1.5-flash", system_instruction=get_system_instructions(profile))
+    
+    if request.method == 'POST':
+        post_data = request.get_json()
+        linkedin_post = post_data.get('linkedinPost')  # Extract the 'content' field
+        twitter_post = post_data.get('twitterPost')  # Extract the 'content' field
+
+        post_title = createPostTitle(linkedin_post, model)  # Create a title for the post
+        
+        user = User.query.filter_by(username=session['username']).first()
+        post = Post(title=post_title, linkedin_post=linkedin_post, twitter_post=twitter_post, author=user)
+        print(f"Post: {post}")
+        return redirect(url_for('home'))
+
     tasks_achieved = request.args.get('tasks_achieved')
     learnings = request.args.get('learnings')
     challenge = request.args.get('challenge')
     challenge_details = request.args.get('challenge_details')
     selected_files = request.args.get('selected_files')
-    return jsonify({'tasks_achieved': tasks_achieved, 'learnings': learnings, 'challenge': challenge, 'challenge_details': challenge_details, 'selected_files': selected_files})
+
+    # Create LinkedIn Post
+    linkedinPostPrompt = get_linkedIn_prompt(tasks_achieved, learnings, challenge_details, selected_files)
+    linkedinPostPromptResponse = model.generate_content(linkedinPostPrompt)
+    linkedinPost = linkedinPostPromptResponse.text
+
+    # Create Twitter Post
+    twitterPostPrompt = get_twitter_prompt(tasks_achieved, learnings, challenge_details, selected_files)
+    twitterPostPromptResponse = model.generate_content(twitterPostPrompt)
+    twitterPost = twitterPostPromptResponse.text
+
+    return render_template('preview_post.html', linkedinPost=linkedinPost, twitterPost=twitterPost)
+    # return jsonify({'linkedInPost': linkedinPost, 'twitterPost': twitterPost})
+
+    # return jsonify({'tasks_achieved': tasks_achieved, 'learnings': learnings, 'challenge': challenge, 'challenge_details': challenge_details, 'selected_files': selected_files})
 
 
 @app.route('/logout')
