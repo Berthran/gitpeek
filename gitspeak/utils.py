@@ -55,11 +55,27 @@ def get_repositories(token):
     else:
         return [repo['name'] for repo in json_response]
 
-def get_files(token, username, repo):
-    url = f'https://api.github.com/repos/{username}/{repo}/contents'
+def get_files(token, username, repo, directory=None):
+    if directory is not None:
+        url = f'https://api.github.com/repos/{username}/{repo}/contents/{directory}'
+    else:
+        url = f'https://api.github.com/repos/{username}/{repo}/contents'
+    
     headers = {'Authorization': f'Bearer {token}'}
     response = requests.get(url, headers=headers)
     json_response = parse_response(response)
     if not json_response:
         return []
-    return [file['name'] for file in json_response]
+    
+    repo_files = []
+    
+    for file in json_response:
+        print("File: ", file['name'], file['type'], "path:", file['path'])
+        # Remove __pycache__ files and hidden files
+        if file['name'].startswith('.') or file['name'] == '__pycache__':
+            continue
+        if file['type'] == 'dir':
+            repo_files += get_files(token, username, repo, file['path'])
+        else:
+            repo_files.append(f"{directory}/{file['name']}" if directory is not None else file['name']) 
+    return repo_files
