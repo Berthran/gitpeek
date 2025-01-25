@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preview Post</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='preview_post.css') }}">
+</head>
+<body>
+  <div class="navbar">
+    <button class="back-button" onclick="goBack()">&#8592;</button>
+  </div>
+  <form method="POST" action="/normal_post/create_post">
+    <div class="container">
+      <div class="button-group">
+        <button class="toggle-button active" id="linkedin-button" data-content="LinkdedIn post content goes here..." onclick="switchPost('linkedin')">LinkedIn</button>
+        <button class="toggle-button" id="x-button" data-content="Twitter post goes here..." onclick="switchPost('x')">X</button>
+      </div>
+      <textarea id="post-body" class="post-textarea" rows="15">{{ linkedinPost }}</textarea>
+      <button type="submit" class="submit-button">Create Post</button>
+    </div>
+
+  <script src="{{ url_for('static', filename='preview_post.js') }}"></script>
+ 
+</body>
+</html>
+
+<!-- Today was a productive day in my full-stack journey! 🔨 I successfully implemented user authentication in my project, a crucial step towards building a secure and user-friendly application. This involved diving into OAuth 2.0, a widely used industry standard for secure authorization. -->
+
+<!-- Learning to leverage OAuth 2.0 has been an invaluable experience. I now understand how to grant third-party applications access to user data while maintaining strong security measures. This knowledge will be instrumental in building robust and secure applications in the future. -->

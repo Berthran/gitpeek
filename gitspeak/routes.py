@@ -15,20 +15,6 @@ from datetime import timedelta
 
 # app.permanent_session_lifetime = timedelta(minutes=1)
 
-
-# @app.route('/set_cookie')
-# def set_cookie():
-#     response = make_response('Cookie is set')
-#     response.set_cookie('user_id', '123', max_age=60*60*24*30)
-#     return response
-
-# @app.route('/check_cookie')
-# def check_cookie():
-#     user_id = request.cookies.get('user_id')
-#     if user_id:
-#         return 'Cookie is set'
-#     return 'Cookie is not set'
-
 auth_url = f'https://github.com/login/oauth/authorize?client_id={CLIENT_ID}&redirect_uri=http://127.0.0.1:5000/callback'
 
 
@@ -319,16 +305,17 @@ def preview_post():
     model = genai.GenerativeModel(model_name="gemini-1.5-flash", system_instruction=get_system_instructions(profile))
     
     if request.method == 'POST':
-        post_data = request.get_json()
-        linkedin_post = post_data.get('linkedinPost')  # Extract the 'content' field
-        twitter_post = post_data.get('twitterPost')  # Extract the 'content' field
+        linkedin_post = request.form.get('linkedinPost')  # Extract the 'content' field
+        twitter_post = request.form.get('twitterPost')  # Extract the 'content' field
 
         post_title = createPostTitle(linkedin_post, model)  # Create a title for the post
         
         user = User.query.filter_by(username=session['username']).first()
-        post = Post(title=post_title, linkedin_post=linkedin_post, twitter_post=twitter_post, author=user)
+        post = Post(title=post_title, linkedin_post=linkedin_post, twitter_post=twitter_post, post_type="normal", author=user)
+        db.session.add(post)
+        db.session.commit()
         print(f"Post: {post}")
-        return redirect(url_for('home'))
+        return redirect(url_for('create_post', linkedin_post=linkedin_post, twitter_post=twitter_post)) 
 
     tasks_achieved = request.args.get('tasks_achieved')
     learnings = request.args.get('learnings')
@@ -345,12 +332,18 @@ def preview_post():
     twitterPostPrompt = get_twitter_prompt(tasks_achieved, learnings, challenge_details, selected_files)
     twitterPostPromptResponse = model.generate_content(twitterPostPrompt)
     twitterPost = twitterPostPromptResponse.text
+    return render_template('preview_post.html', linkedin_post=linkedinPost, twitter_post=twitterPost)
 
-    return render_template('preview_post.html', linkedinPost=linkedinPost, twitterPost=twitterPost)
-    # return jsonify({'linkedInPost': linkedinPost, 'twitterPost': twitterPost})
-
-    # return jsonify({'tasks_achieved': tasks_achieved, 'learnings': learnings, 'challenge': challenge, 'challenge_details': challenge_details, 'selected_files': selected_files})
-
+@app.route('/normal_post/create_post', methods=['GET', 'POST'])
+def create_post():
+    if 'username' not in session:
+        return redirect(url_for('login_password'))
+    if request.method == 'POST':
+        return redirect(url_for('home'))
+    linkedin_post = request.args.get('linkedin_post')
+    twitter_post = request.args.get('twitter_post')
+    return render_template('create_post.html', linkedin_post=linkedin_post, twitter_post=twitter_post)  
+    
 
 @app.route('/logout')
 def logout():

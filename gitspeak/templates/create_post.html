@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preview Post</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='create_post.css') }}">
+</head>
+<body>
+    <div class="navbar">
+      <button class="back-button" onclick="goBack()">&#8592;</button>
+    </div>
+    <form method="POST" action="/normal_post/create_post">
+      <div class="container">
+        <div class="button-group">
+          <button type="button" class="toggle-button" id="linkedin-button">LinkedIn</button>
+        </div>
+  
+        <!-- LinkedIn Post Field -->
+        <div class="copy-container">
+          <textarea 
+            id="linkedinpost-body" 
+            name="linkedinPost" 
+            class="post-textarea" 
+            rows="10" 
+            readonly>{{ linkedin_post }}</textarea>
+          <button 
+            type="button" 
+            class="copy-icon" 
+            data-target="linkedinpost-body">Copy</button>
+        </div>
+  
+        <div class="button-group">
+          <button type="button" class="toggle-button twitter-button" id="x-button">X</button>
+        </div>
+  
+        <!-- Twitter Post Field -->
+        <div class="copy-container">
+          <textarea 
+            id="twitterpost-body" 
+            name="twitterPost" 
+            class="post-textarea" 
+            rows="5" 
+            readonly>{{ twitter_post }}</textarea>
+          <button 
+            type="button" 
+            class="copy-icon" 
+            data-target="twitterpost-body">Copy</button>
+        </div>
+  
+        <button type="submit" class="submit-button">Return Home</button>
+      </div>
+    </form>
+  
+    <script src="{{ url_for('static', filename='copy_post.js') }}"></script>
+  </body>
+  </html>
+</html>

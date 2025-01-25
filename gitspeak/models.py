@@ -43,6 +43,7 @@ class Post(db.Model):
     date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     linkedin_post = db.Column(db.Text, nullable=False)
     twitter_post = db.Column(db.Text, nullable=False)
+    post_type = db.Column(db.String(20), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     author = db.relationship('User', back_populates='posts', lazy=True)
     

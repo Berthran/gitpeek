@@ -2,12 +2,16 @@ function goBack() {
     window.history.back();
   }
 
-  let linkedInPost = "{{ linkedinPost }}"; // Default from backend
-  let twitterPost = "{{ twitterPost | tojson | safe }}"; // Default from backend
-  
+  // Default posts from backend
+let linkedInPost = { linkedinPost | tojson  | safe }; // Correct escaping for JSON
+let twitterPost = "{{ twitterPost | tojson | safe }}"; // Correct escaping for JSON
+
 // Track any user edits to the posts
 let editedLinkedInPost = linkedInPost;
 let editedTwitterPost = twitterPost;
+
+console.log("LinkedIn Post:", linkedInPost);
+console.log("Twitter Post:", twitterPost);
 
 document.addEventListener("DOMContentLoaded", function () {
     const postBody = document.getElementById("post-body");
@@ -15,43 +19,61 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   function switchPost(platform) {
-    const linkedinButton = document.getElementById("linkedin-button");
-    const xButton = document.getElementById("x-button");
-    const postBody = document.getElementById("post-body");
-
-    // Save the current content before switching
-    if (linkedinButton.classList.contains("active")) {
-        editedLinkedInPost = postBody.value; // Save edits for LinkedIn
-    } else {
-        editedTwitterPost = postBody.value; // Save edits for Twitter
-    }
+    const postBody = document.getElementById('post-body');
+    const buttons = document.querySelectorAll('.toggle-button');
   
-    // Switch to the selected platform's post
-    if (platform === "linkedin") {
-      linkedinButton.classList.add("active");
-      xButton.classList.remove("active");
-      postBody.value = editedLinkedInPost; // Load LinkedIn post (edited or default)
-    } else {
-      linkedinButton.classList.remove("active");
-      xButton.classList.add("active");
-      postBody.value = editedTwitterPost; // Load Twitter post (edited or default)
-    }
+    buttons.forEach(button => {
+      button.classList.remove('active');
+    });
+  
+    document.getElementById(`${platform}-button`).classList.add('active');
+  
+    const selectedPost = document.getElementById(`${platform}-button`).getAttribute('data-content');
+    postBody.value = selectedPost;
   }
   
   function createPost() {
-    const linkedinPost = document.getElementById("linkedin-button").dataset.content || "";
-    const twitterPost = document.getElementById("x-button").dataset.content || "";
+    const postBody = document.getElementById('post-body').value;
+    const activeButton = document.querySelector('.toggle-button.active');
+    const platform = activeButton.id.replace('-button', ''); // Get platform (linkedin or x)
   
-    // Send post content to the backend
-    fetch("/submit-post", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ linkedinPost, twitterPost }),
+    // Prepare data based on the platform
+    let postData;
+    if (platform === 'linkedin') {
+      // Prepare LinkedIn post data (replace with your actual data structure)
+      postData = {
+        // ... your LinkedIn post data ...
+      };
+    } else if (platform === 'x') {
+      // Prepare X (Twitter) post data (replace with your actual data structure)
+      postData = {
+        // ... your X (Twitter) post data ...
+      };
+    }
+  
+    // Escape JSON for both platforms
+    const escapedPostData = JSON.stringify(postData);
+  
+    // Make API call to create the post
+    fetch(`/api/${platform}/create`, { 
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: escapedPostData
     })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Backend Response:", data);
-      })
-      .catch((error) => console.error("Error:", error));
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Post created successfully:', data);
+      // Handle success (e.g., display a success message to the user)
+    })
+    .catch(error => {
+      console.error('Error creating post:', error);
+      // Handle error (e.g., display an error message to the user)
+    });
   }
-  
