@@ -39,7 +39,7 @@ class Profile(db.Model):
 class Post(db.Model):
     __tablename__ = 'posts'
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100), nullable=False)
+    title = db.Column(db.String(200), nullable=False)
     date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     linkedin_post = db.Column(db.Text, nullable=False)
     twitter_post = db.Column(db.Text, nullable=False)

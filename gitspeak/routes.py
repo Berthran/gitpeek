@@ -3,6 +3,7 @@ Routes for our app
 '''
 import json
 from gitspeak import db, app # type: ignore
+from sqlalchemy import desc # type: ignore
 from flask import jsonify, redirect, url_for, request, render_template, session # type: ignore
 from sqlalchemy.orm import Session # type: ignore
 from gitspeak.models import User, Profile, Post # type: ignore
@@ -20,7 +21,13 @@ auth_url = f'https://github.com/login/oauth/authorize?client_id={CLIENT_ID}&redi
 
 @app.route('/home', methods=['GET'])
 def home():
-    return render_template('home.html')
+    if 'username' not in session:
+        return url_for('/login_password')
+    username = session.get('username')
+    user = User.query.filter_by(username=username).first()
+    user_posts = Post.query.filter_by(author=user).all()
+    ordered_posts =  Post.query.order_by(desc(Post.date_posted)).all()
+    return render_template('home.html', posts=ordered_posts)
 
 
 @app.route('/')

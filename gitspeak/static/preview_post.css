@@ -21,7 +21,7 @@ body {
   }
   
   .back-button:hover {
-    text-decoration: underline;
+    color: #ccc;
   }
   
   .container {

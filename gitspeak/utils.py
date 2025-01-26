@@ -116,7 +116,7 @@ def get_twitter_prompt(tasks_achieved, learnings, challenge_details, selected_fi
         return prompt
 
 def createPostTitle(post_content, model):
-    title = model.generate_content(f"create a one sentence title for the post: {post_content}").text
+    title = model.generate_content(f"create a one sentence title tagline not more than 150 characters for the post: {post_content}").text
     return title
 
 

@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home Page</title>
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    rel="stylesheet"
+    />
   <link href="https://fonts.googleapis.com/css2?family=Google+Fonts:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='home.css') }}">
   <script defer src="app.js"></script>
@@ -46,29 +50,24 @@
       </div>
       
       <div class="container">
+        {% for post in posts %}
         <div class="http-requests-section">
-          <h3 class="section-title">HTTP Requests</h3>
-          <p class="description">
-            Explored the Flask Request object, understanding how to access and handle incoming HTTP requests (methods, headers, data, cookies, etc.) within Flask applications.
-          </p>
+          <h3 class="section-title">{{ post.title}}</h3>
+          <p class="description">{{ post.linkedin_post }}</p>
           <div class="social-icons">
-            <a href="https://www.linkedin.com" target="_blank">
+            <!-- Clicking on the Linkedin Icon should show the linkedin post -->
+            <a href="#" onclick="showPost('{{ post.linkedin_post }}', 'LinkedIn')" aria-label="LinkedIn">
               <i class="fab fa-linkedin"></i>
             </a>
-            <a href="https://www.twitter.com" target="_blank">
+
+            <!-- Clicking on the Twitter Icon should show the twitter post -->
+            <a href="#" onclick="showPost('{{ post.twitter_post }}', 'Twitter')" aria-label="Twitter">
               <i class="fab fa-twitter"></i>
             </a>
           </div>
         </div>
-      
-        <div class="container-inner">
-          <h3 class="section-title">Day 1: 100DaysOfCode</h3>
-          <p class="task-title">HTTP Requests</p>
-        </div>
+        {% endfor %}
       </div>
-
-      
-      
       
     </div>
   </div>
